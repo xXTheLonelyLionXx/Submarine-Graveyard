@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1340374011029060}
   m_IsPrefabParent: 1
+--- !u!1 &1021078617157992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4289013029999492}
+  m_Layer: 0
+  m_Name: CameraPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1340374011029060
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,8 +37,8 @@ GameObject:
   - component: {fileID: 212043662444182130}
   - component: {fileID: 50414309149891972}
   - component: {fileID: 114650579697132804}
-  - component: {fileID: 70776548669403122}
-  m_Layer: 0
+  - component: {fileID: 60369885603979534}
+  m_Layer: 9
   m_Name: Submarine_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -56,13 +71,26 @@ GameObject:
   - component: {fileID: 4435406709481140}
   - component: {fileID: 58444246620192664}
   - component: {fileID: 114494225521845006}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Radar_Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4289013029999492
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021078617157992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 3.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4933382012923458}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4435406709481140
 Transform:
   m_ObjectHideFlags: 1
@@ -83,8 +111,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488938375284904}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1249156, y: -2.658141, z: 0}
-  m_LocalScale: {x: 8.189693, y: 10.2777, z: 2.3005674}
+  m_LocalPosition: {x: 0.09, y: 0.86, z: 0}
+  m_LocalScale: {x: 2.9794862, y: 2.9794853, z: 2.9794853}
   m_Children: []
   m_Father: {fileID: 4933382012923458}
   m_RootOrder: 0
@@ -101,6 +129,7 @@ Transform:
   m_Children:
   - {fileID: 4559219303894466}
   - {fileID: 4435406709481140}
+  - {fileID: 4289013029999492}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -122,7 +151,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &58444246620192664
 CircleCollider2D:
@@ -139,8 +168,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 13.46
---- !u!70 &70776548669403122
-CapsuleCollider2D:
+--- !u!60 &60369885603979534
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -151,9 +180,82 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
-  m_Size: {x: 2.08, y: 2.28}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.28, y: -1.01}
+      - {x: 0.29999998, y: -0.98999995}
+      - {x: 0.37, y: -0.84999996}
+      - {x: 0.39, y: -0.82}
+      - {x: 0.52, y: -0.81}
+      - {x: 0.53999996, y: -0.78999996}
+      - {x: 0.53999996, y: -0.77}
+      - {x: 0.66999996, y: -0.77}
+      - {x: 0.69, y: -0.75}
+      - {x: 0.69, y: -0.72999996}
+      - {x: 0.79999995, y: -0.74}
+      - {x: 0.82, y: -0.7}
+      - {x: 0.90999997, y: -0.69}
+      - {x: 0.93, y: -0.66999996}
+      - {x: 0.93, y: -0.65}
+      - {x: 1, y: -0.65999997}
+      - {x: 1.04, y: -0.62}
+      - {x: 1.09, y: -0.51}
+      - {x: 1.2099999, y: -0.26999998}
+      - {x: 1.25, y: -0.22}
+      - {x: 1.28, y: -0.17}
+      - {x: 1.28, y: -0.06}
+      - {x: 1.27, y: -0.049999997}
+      - {x: 1.22, y: -0.01}
+      - {x: 0.65999997, y: 0.55}
+      - {x: 0.55, y: 0.66999996}
+      - {x: 0.24, y: 0.97999996}
+      - {x: -0.26, y: 0.97999996}
+      - {x: -1.27, y: -0.04}
+      - {x: -1.27, y: -0.13}
+      - {x: -1.24, y: -0.14999999}
+      - {x: -1.23, y: -0.22999999}
+      - {x: -1.1899999, y: -0.29}
+      - {x: -1.16, y: -0.29}
+      - {x: -1.17, y: -0.35999998}
+      - {x: -1.13, y: -0.38}
+      - {x: -1.13, y: -0.44}
+      - {x: -1.09, y: -0.45999998}
+      - {x: -1.09, y: -0.52}
+      - {x: -1.05, y: -0.53999996}
+      - {x: -1.04, y: -0.59}
+      - {x: -0.97999996, y: -0.65}
+      - {x: -0.9, y: -0.69}
+      - {x: -0.79999995, y: -0.71}
+      - {x: -0.78, y: -0.72999996}
+      - {x: -0.64, y: -0.75}
+      - {x: -0.62, y: -0.77}
+      - {x: -0.48, y: -0.78999996}
+      - {x: -0.45999998, y: -0.81}
+      - {x: -0.37, y: -0.84}
+      - {x: -0.34, y: -0.85999995}
+      - {x: -0.34, y: -0.91999996}
+      - {x: -0.29999998, y: -0.94}
+      - {x: -0.29999998, y: -1}
+      - {x: -0.26, y: -1.02}
+      - {x: -0.25, y: -1.11}
+      - {x: -0.22999999, y: -1.13}
+      - {x: -0.21, y: -1.13}
+      - {x: -0.21, y: -1.23}
+      - {x: -0.19, y: -1.25}
+      - {x: 0.19999999, y: -1.25}
+      - {x: 0.22, y: -1.23}
+      - {x: 0.24, y: -1.13}
+      - {x: 0.26, y: -1.11}
 --- !u!114 &114494225521845006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,12 +279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef8673e8e2c4e94da6a85fab2a936b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerticalSpeed: 0
-  HorizontalSpeed: 0
-  Rb2DSpeed: 0
-  TextTime: 0
+  VerticalSpeed: 10
+  HorizontalSpeed: 1
   Missles: {fileID: 1748819958511888, guid: 7614109eafaf90444b2be2f96b50bf1d, type: 2}
-  SubmarinePosition: {fileID: 0}
+  SubmarinePosition: {fileID: 4933382012923458}
   Health: {fileID: 0}
   Health3: {fileID: 21300000, guid: 6a2ed84b3c6adb74598de93fd1096ee7, type: 3}
   Health2: {fileID: 21300000, guid: 4066607150b0b1d40829f7ea2331a088, type: 3}
@@ -190,7 +290,12 @@ MonoBehaviour:
   Enemies: {fileID: 0}
   Timer: {fileID: 0}
   Message: {fileID: 0}
-  MissileCount: []
+  MissileCount:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &212043662444182130
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -272,7 +377,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: af78fe9393d369d45b1529d4704da726, type: 3}
-  m_Color: {r: 0.797, g: 0.64705884, b: 0.372, a: 0.797}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5254902}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

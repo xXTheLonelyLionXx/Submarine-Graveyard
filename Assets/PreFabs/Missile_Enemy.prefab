@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114491643013771504}
   - component: {fileID: 70636961617921968}
   m_Layer: 0
-  m_Name: Enemy_Missle
-  m_TagString: Enemy_Missle
+  m_Name: Missile_Enemy
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}

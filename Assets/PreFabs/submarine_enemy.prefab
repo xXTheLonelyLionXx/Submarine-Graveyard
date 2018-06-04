@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114178600088616842}
   - component: {fileID: 70940304365361304}
   - component: {fileID: 50447481772941040}
-  m_Layer: 0
-  m_Name: submarine_enemy
+  m_Layer: 12
+  m_Name: Submarine_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,8 +132,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   Sight: {fileID: 1732348994763870}
   target: {fileID: 0}
-  Enemy_Missles: {fileID: 1748819958511888, guid: 0ebc6239b501b894e90f53794e2239f0,
-    type: 2}
+  Missile: {fileID: 0}
   Shoot_Speed: 100
   rotation_speed: 250
   Ammo: {fileID: 0}

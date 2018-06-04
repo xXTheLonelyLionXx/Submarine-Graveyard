@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4068444332562328}
   - component: {fileID: 212709257099669396}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Radar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

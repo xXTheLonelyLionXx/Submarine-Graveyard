@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
     public float VerticalSpeed;
     public float HorizontalSpeed;
-    public float Rb2DSpeed;
-    public int TextTime;
+    //public float Rb2DSpeed;
     public GameObject Missles;
     public Transform SubmarinePosition;
     public GameObject Health;
@@ -19,8 +18,7 @@ public class PlayerController : MonoBehaviour {
     public Text Message;
 
     public GameObject[] MissileCount;
-
-    private Rigidbody2D _rb2d;
+    
     private int _life = 3;
     private Image _healthImage;
     private int _enemiesStart;
@@ -40,7 +38,6 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _rb2d = GetComponent<Rigidbody2D>();
         _healthImage = Health.GetComponent<Image>();
         _enemiesStart = GameObject.FindGameObjectsWithTag("Enemy").Length;
         _messageInOrOut = true;
@@ -67,8 +64,8 @@ public class PlayerController : MonoBehaviour {
         SetTimeText();
 
         //Controls
-        transform.Rotate(0,0,-Input.GetAxis("Horizontal")/HorizontalSpeed);
-        transform.Translate(0, Input.GetAxis("Vertical")/VerticalSpeed, 0);
+        transform.Rotate(0,0,-Input.GetAxis("Horizontal") * HorizontalSpeed);
+        transform.Translate(0, Input.GetAxis("Vertical") / VerticalSpeed, 0);
 
         if (_life == 3)
         {
@@ -92,8 +89,8 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate()
     {
         //Physics
-        Vector2 movement = new Vector2(0, Input.GetAxis("Vertical"));
-        _rb2d.AddRelativeForce(movement * Rb2DSpeed);
+        //Vector2 movement = new Vector2(0, Input.GetAxis("Vertical"));         what is dis?
+        //_rb2d.AddRelativeForce(movement * Rb2DSpeed);
     }
 
     //Create Missle once shot
@@ -109,7 +106,7 @@ public class PlayerController : MonoBehaviour {
         {
             _life--;
         }
-        if (other.gameObject.tag == "Enemy_Missle")
+        if (other.gameObject.tag == "Missile")
         {
             _life--;
         }

@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 58724305793185908}
   - component: {fileID: 114100859347808064}
   m_Layer: 11
-  m_Name: missle_collectible
-  m_TagString: Item_Missle
+  m_Name: Missile_collectible
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

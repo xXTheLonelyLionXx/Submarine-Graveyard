@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missles : MonoBehaviour {
+public class Missiles : MonoBehaviour {
 
     public float speed;
     public Sprite Explosion;
@@ -40,16 +40,10 @@ public class Missles : MonoBehaviour {
 	}
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (tag == "Missle" && other.gameObject.tag == "Enemy")
+        if (other.gameObject.layer == 8)
         {
             Destroy(gameObject);
-        }
-        if (tag == "Enemy_Missle" && other.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-        if (other.gameObject.tag == "Wall")
-        {
+            Debug.Log("cmonBruhj");
             Coll.size = new Vector2(4, 4);
             transform.gameObject.tag = "Explosion";
             SR.sprite = Explosion;

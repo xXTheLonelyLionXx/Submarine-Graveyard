@@ -13,7 +13,7 @@ public class Enemy_AI : MonoBehaviour {
     public GameObject Player;
     public GameObject Sight;
     public Transform target;
-    public GameObject Enemy_Missles;
+    public GameObject Missile;
     public int Shoot_Speed;
     public int rotation_speed;
     public GameObject Ammo;
@@ -126,19 +126,19 @@ public class Enemy_AI : MonoBehaviour {
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D missle)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(missle.gameObject.tag == "Missle")
+        if (other.gameObject.tag == "Missile")
         {
             life--;
         }
-        if (missle.gameObject.tag == "Explosion")
+        if (other.gameObject.tag == "Explosion")
         {
             life--;
         }
     }
     private void Shoot()
     {
-        Instantiate(Enemy_Missles, transform.localPosition, transform.localRotation);
+        Instantiate(Missile, transform.localPosition, transform.localRotation);
     }
 }

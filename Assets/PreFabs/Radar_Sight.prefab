@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4241439904688262}
   - component: {fileID: 58519998000983218}
   - component: {fileID: 114140476044389244}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Radar_Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
