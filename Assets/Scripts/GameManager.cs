@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(9, 9);
         Physics2D.IgnoreLayerCollision(10, 10);
         Physics2D.IgnoreLayerCollision(12, 13);
+        Physics2D.IgnoreLayerCollision(13, 14);
         _enemiesStart = GameObject.FindGameObjectsWithTag("Enemy").Length;
         _time = 180 - Mathf.Round(Time.time);
         _messageInOrOut = true;
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour {
     {
         if (_enemiesStart - _enemiesActive == _enemiesStart)
         {
-            Enemies.text = "All targets elliminated.";
+            Enemies.text = "All targets elliminated";
             Message.text = "GATE OPEN";
             if (_messageInOrOut == true)
             {

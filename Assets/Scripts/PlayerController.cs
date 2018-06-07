@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     public Sprite Health3;
     public Sprite Health2;
     public Sprite Health1;
+    public bool IsController;
 
     public GameObject[] MissileCount;
     
@@ -43,8 +44,26 @@ public class PlayerController : MonoBehaviour {
         //UI_Texts Update
 
         //Controls
-        transform.Rotate(0,0,-Input.GetAxis("Horizontal") * HorizontalSpeed);
-        transform.Translate(0, Input.GetAxis("Vertical") / VerticalSpeed, 0);
+        if (IsController)
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Input.GetAxis("JoystickHorizontal"), -Input.GetAxis("JoystickVertical")) * VerticalSpeed);
+            float h = Input.GetAxis("JoystickHorizontal");
+            float v = Input.GetAxis("JoystickVertical");
+            float angle = Mathf.Atan2(-h, -v) * Mathf.Rad2Deg;
+            Quaternion newDir = Quaternion.identity;
+            newDir.eulerAngles = new Vector3(0, 0, angle);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newDir, Time.deltaTime);
+
+            if (Input.GetKeyDown("joystick button 0") && _ammo > 0)
+            {
+                Shoot();
+            }
+        }
+        else
+        {
+            transform.Rotate(0, 0, -Input.GetAxis("KeyboardHorizontal") * HorizontalSpeed);
+            transform.Translate(0, Input.GetAxis("KeyboardVertical") / VerticalSpeed, 0);
+        }
 
         if (_life == 3)
         {
@@ -58,10 +77,33 @@ public class PlayerController : MonoBehaviour {
             _healthImage.sprite = Health1;
         }
 
+        switch(_life)
+        {
+            case 5:
+
+                break;
+            case 4:
+
+                break;
+            case 3:
+                _healthImage.sprite = Health3;
+                break;
+            case 2:
+                _healthImage.sprite = Health2;
+                break;
+            case 1:
+                _healthImage.sprite = Health1;
+                break;
+            case 0:
+                Destroy(gameObject);
+                break;
+            default:
+                break;
+        }
+
         if(Input.GetKeyDown(KeyCode.Space) && _ammo > 0)
         {
             Shoot();
-            _ammo--;
         }
 	}
 
@@ -90,6 +132,7 @@ public class PlayerController : MonoBehaviour {
     //Create Missle once shot
     private void Shoot()
     {
+        _ammo--;
         GameObject playerBullet;
         playerBullet = Instantiate(Missles, SubmarinePosition.position, SubmarinePosition.rotation);
         playerBullet.tag = "BulletPlayer";

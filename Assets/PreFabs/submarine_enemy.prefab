@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114178600088616842}
   - component: {fileID: 70940304365361304}
   - component: {fileID: 50447481772941040}
-  m_Layer: 12
-  m_Name: Submarine_Enemy
+  m_Layer: 10
+  m_Name: submarine_enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 224198748991112352}
   - component: {fileID: 58045759775011806}
   - component: {fileID: 114927282892013130}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,19 +122,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b799309d2c969547abe87b943d3301f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UP_AND_DOWN: 1250
-  LEFT: 0
-  RIGHT: 0
-  speed: 1
-  death_size: 30
-  death_speed: 20
+  UpAndDown: 0
+  Left: 0
+  Right: 0
+  Speed: 0
+  DeathSize: 0
+  DeathSpeed: 0
   Explosion: {fileID: 21300000, guid: 4002a08fdd8edb442938427601fefe3a, type: 3}
   Player: {fileID: 0}
   Sight: {fileID: 1732348994763870}
-  target: {fileID: 0}
+  Target: {fileID: 0}
   Missile: {fileID: 0}
-  Shoot_Speed: 100
-  rotation_speed: 250
+  ShootSpeed: 0
+  RotationSpeed: 0
   Ammo: {fileID: 0}
 --- !u!114 &114927282892013130
 MonoBehaviour:
