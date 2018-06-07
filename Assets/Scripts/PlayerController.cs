@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
@@ -69,7 +70,12 @@ public class PlayerController : MonoBehaviour {
         //Controls
         transform.Rotate(0,0,-Input.GetAxis("Horizontal")/HorizontalSpeed);
         transform.Translate(0, Input.GetAxis("Vertical")/VerticalSpeed, 0);
-
+        if (Input.GetKeyDown(KeyCode.Space) && _ammo > 0)
+        {
+            Shoot();
+            _ammo--;
+        }
+        //Canvas
         if (_life == 3)
         {
             _healthImage.sprite = Health3;
@@ -82,10 +88,10 @@ public class PlayerController : MonoBehaviour {
             _healthImage.sprite = Health1;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && _ammo > 0)
+        //Death
+        if(_life <= 0)
         {
-            Shoot();
-            _ammo--;
+            SceneManager.LoadScene("Leaderboard");
         }
 	}
 
