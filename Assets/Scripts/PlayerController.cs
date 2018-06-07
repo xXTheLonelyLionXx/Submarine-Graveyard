@@ -13,36 +13,19 @@ public class PlayerController : MonoBehaviour {
     public Sprite Health3;
     public Sprite Health2;
     public Sprite Health1;
-    public Text Enemies;
-    public Text Timer;
-    public Text Message;
 
     public GameObject[] MissileCount;
     
     private int _life = 3;
     private Image _healthImage;
-    private int _enemiesStart;
-    private int _enemiesActive;
-    private string _enemiesStartText;
-    private string _enemiesActiveText;
-    private bool _messageInOrOut;
-    private int _fade;
     private int _ammo;
-    private float _time;
-    private float _time_minutes;
-    private float _time_seconds;
-    private string _minutes;
-    private string _seconds;
 
 
 
     // Use this for initialization
     void Start () {
         _healthImage = Health.GetComponent<Image>();
-        _enemiesStart = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        _messageInOrOut = true;
         _ammo = 5;
-        _time = 180 - Mathf.Round(Time.time);
 	}
 	
 	// Update is called once per frame
@@ -58,10 +41,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         //UI_Texts Update
-        _enemiesActive = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        SetEnemyText();
-        _time = 180 - Mathf.Round(Time.time);
-        SetTimeText();
 
         //Controls
         transform.Rotate(0,0,-Input.GetAxis("Horizontal") * HorizontalSpeed);
@@ -93,103 +72,31 @@ public class PlayerController : MonoBehaviour {
         //_rb2d.AddRelativeForce(movement * Rb2DSpeed);
     }
 
-    //Create Missle once shot
-    private void Shoot()
-    {
-        Instantiate(Missles, SubmarinePosition.position, SubmarinePosition.rotation);
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Life lost
-        if(other.gameObject.tag == "Explosion")
+        if(other.gameObject.tag == "BulletEnemy" || other.gameObject.tag == "Explosion")
         {
-            _life--;
-        }
-        if (other.gameObject.tag == "Missile")
-        {
-            _life--;
+            IsHit();
         }
         //Ammo gained
-        if(other.gameObject.tag == "Item_Missle")
+        if(other.gameObject.layer == 14)
         {
             _ammo += 3;
         }
     }
 
-    //UI_Texts
-    private void SetEnemyText()
+    //Create Missle once shot
+    private void Shoot()
     {
-        if(_enemiesStart-_enemiesActive == _enemiesStart)
-        {
-            Enemies.text = "All targets elliminated.";
-            Message.text = "GATE OPEN";
-            if(_messageInOrOut == true)
-            {
-                Color Mess_Col = Message.color;
-                Mess_Col.a += 0.01f;
-                Message.color = Mess_Col;
-                _fade++;
-                if(_fade == 100)
-                {
-                    _messageInOrOut = false;
-                    _fade = 0;
-                }
-            }
-            if (_messageInOrOut == false)
-            {
-                Color Mess_Col = Message.color;
-                Mess_Col.a -= 0.01f;
-                Message.color = Mess_Col;
-                _fade++;
-                if (_fade == 100)
-                {
-                    _messageInOrOut = true;
-                    _fade = 0;
-                }
-            }
-        }
-        if(_enemiesStart-_enemiesActive < _enemiesStart)
-        {
-            if(_enemiesStart < 10)
-            {
-                _enemiesStartText = "0" + _enemiesStart;
-            }
-            else
-            {
-                _enemiesStartText = _enemiesStart.ToString();
-            }
-            if (_enemiesStart - _enemiesActive < 10)
-            {
-                _enemiesActiveText = "0" + (_enemiesStart - _enemiesActive);
-            }
-            else
-            {
-                _enemiesActiveText = _enemiesActive.ToString();
-            }
-            Enemies.text = "Enemies " + _enemiesActiveText + "/" + _enemiesStartText;
-        }
+        GameObject playerBullet;
+        playerBullet = Instantiate(Missles, SubmarinePosition.position, SubmarinePosition.rotation);
+        playerBullet.tag = "BulletPlayer";
     }
-    private void SetTimeText()
+
+    public void IsHit()
     {
-        _time_minutes = Mathf.Floor(_time / 60);
-        _time_seconds = _time % 60;
-        if(_time_minutes < 10)
-        {
-            _minutes = "0" + _time_minutes;
-        }
-        else
-        {
-            _minutes = _time_minutes.ToString();
-        }
-        if(_time_seconds < 10)
-        {
-            _seconds = "0" + _time_seconds;
-        }
-        else
-        {
-            _seconds = _time_seconds.ToString();
-        }
-        Timer.text = _minutes + ":" + _seconds;
+        _life--;
     }
 }

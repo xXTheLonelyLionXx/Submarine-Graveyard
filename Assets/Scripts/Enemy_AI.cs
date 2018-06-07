@@ -3,123 +3,123 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_AI : MonoBehaviour {
-    public float UP_AND_DOWN;
-    public float LEFT;
-    public float RIGHT;
-    public float speed;
-    public float death_size;
-    public float death_speed;
+    public float UpAndDown;
+    public float Left;
+    public float Right;
+    public float Speed;
+    public float DeathSize;
+    public float DeathSpeed;
     public Sprite Explosion;
     public GameObject Player;
     public GameObject Sight;
-    public Transform target;
+    public Transform Target;
     public GameObject Missile;
-    public int Shoot_Speed;
-    public int rotation_speed;
+    public int ShootSpeed;
+    public int RotationSpeed;
     public GameObject Ammo;
 
-    private SpriteRenderer SR;
-    private CapsuleCollider2D Coll;
-    private bool up_or_down;
-    private int n;
-    private int b;
-    private int life;
-    private bool dead;
-    private bool in_radius;
-    private int k = 0;
-    private int l = 0;
-    private bool found;
-    private bool at_start;
-    private Vector3 start_position;
-    private Quaternion start_rotation;
+    private SpriteRenderer _SR;
+    private CapsuleCollider2D _coll;
+    private bool _upOrDown;
+    private int _n;
+    private int _b;
+    private int _life;
+    private bool _dead;
+    private bool _inRadius;
+    private int _k = 0;
+    private int _l = 0;
+    private bool _found;
+    private bool _atStart;
+    private Vector3 _startPosition;
+    private Quaternion _startRotation;
 
     // Use this for initialization
     void Start () {
-        in_radius = false;
-        up_or_down = true;
-        at_start = false;
-        life = 3;
-        SR = gameObject.GetComponent<SpriteRenderer>();
-        Coll = gameObject.GetComponent<CapsuleCollider2D>();
-        start_position = transform.position;
-        start_rotation = transform.rotation;
+        _inRadius = false;
+        _upOrDown = true;
+        _atStart = false;
+        _life = 3;
+        _SR = gameObject.GetComponent<SpriteRenderer>();
+        _coll = gameObject.GetComponent<CapsuleCollider2D>();
+        _startPosition = transform.position;
+        _startRotation = transform.rotation;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        in_radius = Sight.GetComponentInChildren<Sight>().in_radius;
-        if(up_or_down == true && dead == false && in_radius == false && found==false)
+        _inRadius = Sight.GetComponentInChildren<Sight>().in_radius;
+        if(_upOrDown == true && _dead == false && _inRadius == false && _found==false)
         {
-            transform.Translate(0, speed*Time.deltaTime, 0);
-            n++;
-            if (n == UP_AND_DOWN)
+            transform.Translate(0, Speed*Time.deltaTime, 0);
+            _n++;
+            if (_n == UpAndDown)
             {
-                up_or_down = false;
-                n = 0;
+                _upOrDown = false;
+                _n = 0;
             }
         }
-        if(up_or_down==false && dead == false && in_radius == false && found==false)
+        if(_upOrDown==false && _dead == false && _inRadius == false && _found==false)
         {
             transform.Rotate(0, 0, 1);
-            b++;
-            if (b == 180)
+            _b++;
+            if (_b == 180)
             {
-                b = 0;
-                up_or_down = true;
+                _b = 0;
+                _upOrDown = true;
             }
         }
-        if(in_radius == true)
+        if(_inRadius == true)
         {
-            found = true;
-            n = 0;
-            b = 0;
+            _found = true;
+            _n = 0;
+            _b = 0;
             var look_at_player = Quaternion.LookRotation(transform.position - Player.transform.position, Vector3.forward);
             look_at_player.x = 0;
             look_at_player.y = 0;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, look_at_player, rotation_speed*Time.deltaTime);
-            l++;
-            if (l == Shoot_Speed)
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, look_at_player, RotationSpeed*Time.deltaTime);
+            _l++;
+            if (_l == ShootSpeed)
             {
                 Shoot();
-                l = 0;
+                _l = 0;
             }
 
         }
-        if (found == true && in_radius == false)
+        if (_found == true && _inRadius == false)
         {
-            if (at_start == false)
+            if (_atStart == false)
             {
-                var look_at_start = Quaternion.LookRotation(transform.position-start_position, Vector3.forward);
+                var look_at_start = Quaternion.LookRotation(transform.position-_startPosition, Vector3.forward);
                 look_at_start.x = 0;
                 look_at_start.y = 0;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, look_at_start, rotation_speed*Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, start_position, speed*Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, look_at_start, RotationSpeed*Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _startPosition, Speed*Time.deltaTime);
             }
 
-            if (transform.position == start_position)
+            if (transform.position == _startPosition)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, start_rotation, rotation_speed*Time.deltaTime);
-                at_start = true;
-                if(transform.rotation==start_rotation)
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, _startRotation, RotationSpeed*Time.deltaTime);
+                _atStart = true;
+                if(transform.rotation==_startRotation)
                 {
-                    found = false;
-                    at_start = false;
+                    _found = false;
+                    _atStart = false;
                 }
             }
         }
-        if (life == 0)
+        if (_life == 0)
         {
-            Coll.size = new Vector2(4, 4);
+            _coll.size = new Vector2(4, 4);
             transform.gameObject.tag = "Explosion";
-            SR.sprite = Explosion;
+            _SR.sprite = Explosion;
             GetComponent<Collider2D>().isTrigger = true;
-            dead = true;
+            _dead = true;
         }
-        if (dead == true)
+        if (_dead == true)
         {
-            transform.localScale+= new Vector3(1/death_size,1/death_size,0);
-            k++;
-            if(k == death_speed)
+            transform.localScale+= new Vector3(1/DeathSize,1/DeathSize,0);
+            _k++;
+            if(_k == DeathSpeed)
             {
                 Instantiate(Ammo, transform.localPosition, Quaternion.identity);
                 Destroy(gameObject);
@@ -128,17 +128,20 @@ public class Enemy_AI : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Missile")
+        if (other.gameObject.tag == "BulletPlayer" || other.gameObject.tag == "Explosion")
         {
-            life--;
-        }
-        if (other.gameObject.tag == "Explosion")
-        {
-            life--;
+            IsHit();
         }
     }
     private void Shoot()
     {
-        Instantiate(Missile, transform.localPosition, transform.localRotation);
+        GameObject enemyBullet;
+        enemyBullet = Instantiate(Missile, transform.localPosition, transform.localRotation);
+        enemyBullet.tag = "BulletEnemy";
+    }
+
+    public void IsHit()
+    {
+        _life--;
     }
 }

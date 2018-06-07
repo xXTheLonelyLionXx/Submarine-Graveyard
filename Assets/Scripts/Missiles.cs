@@ -25,29 +25,39 @@ public class Missiles : MonoBehaviour {
 	void Update () {
         if(explodes == false)
         {
-            transform.Translate(0, 1 * speed, 0);
+            transform.Translate(0, speed * Time.deltaTime, 0);
         }
+        
+        //No Update after OnTriggerEnter (gameObject destroyed)
 
-        if(explodes == true)
-        {
-            transform.localScale += new Vector3(1 / death_size, 1 / death_size, 0);
-            k++;
-            if (k == death_speed)
-            {
-                Destroy(gameObject);
-            }
-        }
-	}
+        //if (explodes == true)
+        //{
+        //    transform.localScale += new Vector3(1 / death_size, 1 / death_size, 0);
+        //    k++;
+        //    if (k == death_speed)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == 8)
         {
             Destroy(gameObject);
-            Debug.Log("cmonBruhj");
-            Coll.size = new Vector2(4, 4);
-            transform.gameObject.tag = "Explosion";
-            SR.sprite = Explosion;
-            explodes = true;
+            //Coll.size = new Vector2(4, 4);
+            //transform.gameObject.tag = "Explosion";
+            //SR.sprite = Explosion;
+            //explodes = true;
+        }
+
+        if (gameObject.CompareTag("BulletPlayer") && other.gameObject.layer == 10)
+        {
+            Destroy(gameObject);
+        }
+        if (gameObject.CompareTag("BulletEnemy") && other.gameObject.layer == 9)
+        {
+            Destroy(gameObject);
         }
     }
 }
