@@ -6,26 +6,19 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
     public float VerticalSpeed;
     public float HorizontalSpeed;
-    //public float Rb2DSpeed;
     public GameObject Missles;
     public Transform SubmarinePosition;
-    public GameObject Health;
-    public Sprite Health3;
-    public Sprite Health2;
-    public Sprite Health1;
     public bool IsController;
 
     public GameObject[] MissileCount;
     
-    private int _life = 3;
-    private Image _healthImage;
+    private int _life = 5;
     private int _ammo;
 
 
 
     // Use this for initialization
     void Start () {
-        _healthImage = Health.GetComponent<Image>();
         _ammo = 5;
 	}
 	
@@ -65,55 +58,16 @@ public class PlayerController : MonoBehaviour {
             transform.Translate(0, Input.GetAxis("KeyboardVertical") / VerticalSpeed, 0);
         }
 
-        if (_life == 3)
-        {
-            _healthImage.sprite = Health3;
-        } else if (_life == 2)
-        {
-            _healthImage.sprite = Health2;
-        }
-        else if (_life == 1)
-        {
-            _healthImage.sprite = Health1;
-        }
-
-        switch(_life)
-        {
-            case 5:
-
-                break;
-            case 4:
-
-                break;
-            case 3:
-                _healthImage.sprite = Health3;
-                break;
-            case 2:
-                _healthImage.sprite = Health2;
-                break;
-            case 1:
-                _healthImage.sprite = Health1;
-                break;
-            case 0:
-                Destroy(gameObject);
-                break;
-            default:
-                break;
-        }
-
         if(Input.GetKeyDown(KeyCode.Space) && _ammo > 0)
         {
             Shoot();
         }
-	}
 
-    private void FixedUpdate()
-    {
-        //Physics
-        //Vector2 movement = new Vector2(0, Input.GetAxis("Vertical"));         what is dis?
-        //_rb2d.AddRelativeForce(movement * Rb2DSpeed);
+        if (_life == 0)
+        {
+            Destroy(gameObject);
+        }
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -141,5 +95,10 @@ public class PlayerController : MonoBehaviour {
     public void IsHit()
     {
         _life--;
+    }
+
+    public int GetHp()
+    {
+        return _life;
     }
 }
