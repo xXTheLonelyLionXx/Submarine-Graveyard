@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour {
 
@@ -59,6 +60,7 @@ public class MenuPause : MonoBehaviour {
     public void LoadMenu()
     {
         Debug.Log("Loading Menu");
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()

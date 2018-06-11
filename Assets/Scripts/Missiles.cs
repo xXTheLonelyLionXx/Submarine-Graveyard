@@ -9,15 +9,15 @@ public class Missiles : MonoBehaviour {
     public float death_size;
     public float death_speed;
 
-    private CapsuleCollider2D Coll;
-    private SpriteRenderer SR;
+    //private CapsuleCollider2D Coll;
+    //private SpriteRenderer SR;
     private bool explodes;
     private int k;
 
     // Use this for initialization
     void Start () {
-        Coll = gameObject.GetComponent<CapsuleCollider2D>();
-        SR = gameObject.GetComponent<SpriteRenderer>();
+        //Coll = gameObject.GetComponent<CapsuleCollider2D>();
+        //SR = gameObject.GetComponent<SpriteRenderer>();
         explodes = false;
     }
 	
