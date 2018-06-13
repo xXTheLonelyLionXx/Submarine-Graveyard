@@ -50,16 +50,16 @@ public class MenuPause : MonoBehaviour {
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        Input.ResetInputAxes();
     }
 
     public void OpenOptions()
     {
-        Debug.Log("Opening Options");
+        SceneManager.LoadScene("Options");
     }
 
     public void LoadMenu()
     {
-        Debug.Log("Loading Menu");
         SceneManager.LoadScene("Menu");
     }
 

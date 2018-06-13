@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1f;
         Physics2D.IgnoreLayerCollision(9, 9);
         Physics2D.IgnoreLayerCollision(10, 10);
+        Physics2D.IgnoreLayerCollision(13, 13);
         Physics2D.IgnoreLayerCollision(12, 13);
         Physics2D.IgnoreLayerCollision(13, 14);
         _enemiesStart = GameObject.FindGameObjectsWithTag("Enemy").Length;

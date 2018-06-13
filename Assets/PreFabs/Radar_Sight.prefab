@@ -68,3 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Red_Radar: {fileID: 1572594413968212, guid: a687b8febc5213e49b20eddf1893bb79, type: 2}
+  IndicatorEnemy: {fileID: 1368822487873436, guid: 3f2ee5bfe6bfbd14aa6c14b2427a8399,
+    type: 2}
+  MinimapPosition: {fileID: 0}
+  EnemiesInSight: []
+  EnemiesOnRadar: []

@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4435406709481140}
   - component: {fileID: 58444246620192664}
   - component: {fileID: 114494225521845006}
+  - component: {fileID: 50234199783284578}
   m_Layer: 13
   m_Name: Radar_Sight
   m_TagString: Untagged
@@ -133,6 +134,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50234199783284578
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758849545573480}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!50 &50414309149891972
 Rigidbody2D:
   serializedVersion: 4
@@ -167,7 +188,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 13.46
+  m_Radius: 14
 --- !u!60 &60369885603979534
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -283,13 +304,7 @@ MonoBehaviour:
   HorizontalSpeed: 1
   Missles: {fileID: 1748819958511888, guid: 7614109eafaf90444b2be2f96b50bf1d, type: 2}
   SubmarinePosition: {fileID: 4933382012923458}
-  Health: {fileID: 0}
-  Health3: {fileID: 21300000, guid: 6a2ed84b3c6adb74598de93fd1096ee7, type: 3}
-  Health2: {fileID: 21300000, guid: 4066607150b0b1d40829f7ea2331a088, type: 3}
-  Health1: {fileID: 21300000, guid: 6c1201d5957193041bfdd691d9d8d6fc, type: 3}
-  Enemies: {fileID: 0}
-  Timer: {fileID: 0}
-  Message: {fileID: 0}
+  IsController: 0
   MissileCount:
   - {fileID: 0}
   - {fileID: 0}
