@@ -31,12 +31,14 @@ public class MenuStart : MonoBehaviour {
 
     public void OpenLeaderboard()
     {
+        SceneManager.LoadScene("Leaderboard");
         Debug.Log("Opening Leaderboard");
         SceneManager.LoadScene("Leaderboard");
     }
 
     public void OpenOptions()
     {
+        SceneManager.LoadScene("Options");
         Debug.Log("Opening Options");
         SceneManager.LoadScene("Options");
     }
