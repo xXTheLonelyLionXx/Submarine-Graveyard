@@ -25,19 +25,19 @@ public class SpriteChanger : MonoBehaviour {
         {
             switch (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().GetHp())
             {
-                case 4:
+                case 5:
                     gameObject.GetComponent<SpriteRenderer>().sprite = Health80;
                     break;
-                case 3:
+                case 4:
                     gameObject.GetComponent<SpriteRenderer>().sprite = Health60;
                     break;
-                case 2:
+                case 3:
                     gameObject.GetComponent<SpriteRenderer>().sprite = Health40;
                     break;
-                case 1:
+                case 2:
                     gameObject.GetComponent<SpriteRenderer>().sprite = Health20;
                     break;
-                case 0:
+                case 1:
                     gameObject.GetComponent<SpriteRenderer>().sprite = Health0;
                     break;
                 default:

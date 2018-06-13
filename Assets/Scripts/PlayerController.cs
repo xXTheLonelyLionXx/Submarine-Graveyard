@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject[] MissileCount;
     
-    private int _life = 5;
+    private int _life = 6;
     private int _ammo;
 
 
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 
         if (_life == 0)
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene("Leaderboard");
         }
     }
 
