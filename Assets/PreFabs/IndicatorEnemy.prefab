@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4376223411868792}
   - component: {fileID: 212507382316366722}
-  - component: {fileID: 114761452987811348}
+  - component: {fileID: 114744623798674174}
   m_Layer: 0
   m_Name: IndicatorEnemy
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114761452987811348
+--- !u!114 &114744623798674174
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da92b2c7b7008874092ec5e445e110f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPosition: {fileID: 0}
+  AssignedEnemy: {fileID: 0}
 --- !u!212 &212507382316366722
 SpriteRenderer:
   m_ObjectHideFlags: 1

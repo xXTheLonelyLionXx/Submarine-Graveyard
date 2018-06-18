@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
-    public float VerticalSpeed;
-    public float HorizontalSpeed;
+
+    public float VerticalSpeed = 10;
+    public float HorizontalSpeed = 15; 
     public GameObject Missles;
     public Transform SubmarinePosition;
     public bool IsController;
@@ -15,8 +16,6 @@ public class PlayerController : MonoBehaviour {
     
     private int _life = 6;
     private int _ammo;
-
-
 
     // Use this for initialization
     void Start () {
@@ -47,19 +46,28 @@ public class PlayerController : MonoBehaviour {
             Quaternion newDir = Quaternion.identity;
             newDir.eulerAngles = new Vector3(0, 0, angle);
             transform.rotation = Quaternion.Slerp(transform.rotation, newDir, Time.deltaTime);
-
-            if (Input.GetKeyDown("joystick button 0") && _ammo > 0)
-            {
-                Shoot();
-            }
         }
         else
         {
-            transform.Rotate(0, 0, -Input.GetAxis("KeyboardHorizontal") * HorizontalSpeed);
-            transform.Translate(0, Input.GetAxis("KeyboardVertical") / VerticalSpeed, 0);
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            {
+                GetComponent<Rigidbody2D>().AddForce(transform.up * VerticalSpeed);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
+                GetComponent<Rigidbody2D>().AddTorque(HorizontalSpeed);
+            }
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            {
+                GetComponent<Rigidbody2D>().AddForce(-transform.up * VerticalSpeed);
+            }
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                GetComponent<Rigidbody2D>().AddTorque(-HorizontalSpeed);
+            }
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && _ammo > 0)
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0") && _ammo > 0)
         {
             Shoot();
         }

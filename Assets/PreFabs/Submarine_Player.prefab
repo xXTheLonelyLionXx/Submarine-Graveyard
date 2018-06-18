@@ -86,11 +86,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021078617157992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 3.14, z: 0}
+  m_LocalPosition: {x: 0, y: 0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4933382012923458}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4435406709481140
 Transform:
@@ -103,7 +103,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4933382012923458}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4559219303894466
 Transform:
@@ -116,7 +116,7 @@ Transform:
   m_LocalScale: {x: 2.9794862, y: 2.9794853, z: 2.9794853}
   m_Children: []
   m_Father: {fileID: 4933382012923458}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4933382012923458
 Transform:
@@ -128,9 +128,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4289013029999492}
   - {fileID: 4559219303894466}
   - {fileID: 4435406709481140}
-  - {fileID: 4289013029999492}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,13 +167,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 1000000
+  m_AngularDrag: 15
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &58444246620192664
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -288,7 +288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1b8992b85a85641b6f0081f59cf38b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Red_Radar: {fileID: 1572594413968212, guid: a687b8febc5213e49b20eddf1893bb79, type: 2}
+  Red_Radar: {fileID: 0}
+  IndicatorEnemy: {fileID: 1368822487873436, guid: 3f2ee5bfe6bfbd14aa6c14b2427a8399,
+    type: 2}
+  MinimapPosition: {fileID: 0}
 --- !u!114 &114650579697132804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VerticalSpeed: 10
-  HorizontalSpeed: 1
+  HorizontalSpeed: 15
   Missles: {fileID: 1748819958511888, guid: 7614109eafaf90444b2be2f96b50bf1d, type: 2}
   SubmarinePosition: {fileID: 4933382012923458}
   IsController: 0

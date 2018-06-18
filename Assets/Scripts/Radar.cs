@@ -1,43 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class Radar : MonoBehaviour {
+    public GameObject Red_Radar;
+    public GameObject IndicatorEnemy;
+    public Transform MinimapPosition;
 
-    //public Transform Minimap;
+    public Dictionary<GameObject, GameObject> EnemiesInSight = new Dictionary<GameObject, GameObject>();
+
     // Use this for initialization
-    void Start()
-    {
-        //transform.parent = Minimap.transform;
-    }
+    void Start () {
+        
+	}
+	
 	// Update is called once per frame
 	void Update () {
+		
+	}
 
-    }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
-            Debug.DrawLine(transform.position, collision.transform.position);
-            //Vector2 direction = new Vector2(collision.transform.position.x - transform.position.x, collision.transform.position.y - transform.position.y);
-            //transform.up = collision.transform.localPosition - transform.position;
+            GameObject AddRadarEnemy;
+            AddRadarEnemy = Instantiate(IndicatorEnemy, MinimapPosition.position + (other.transform.position - transform.position) / 18, Quaternion.identity);
+            AddRadarEnemy.transform.parent = MinimapPosition.transform;
+            AddRadarEnemy.GetComponent<IndicatorMovement>().AssignedEnemy = other.gameObject;
+            AddRadarEnemy.GetComponent<IndicatorMovement>().PlayerPosition = gameObject;
+            EnemiesInSight.Add(other.gameObject, AddRadarEnemy);
         }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Enemy")
-        {
-            Destroy(gameObject);
-        }
-        if(other.gameObject.tag == "Explosion")
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void Direction(float x, float y)
-    {
-        Vector2 direction = new Vector2(x, y);
+        GameObject temp = EnemiesInSight[other.gameObject];
+        Destroy(temp);
+        EnemiesInSight.Remove(other.gameObject);
     }
 }

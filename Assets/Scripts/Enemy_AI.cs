@@ -14,7 +14,8 @@ public class Enemy_AI : MonoBehaviour {
     public GameObject Sight;
     public Transform Target;
     public GameObject Missile;
-    public int ShootSpeed;
+    //public int ShootSpeed;
+    public float ShootCooldown = 4f;
     public int RotationSpeed;
     public GameObject Ammo;
 
@@ -27,11 +28,11 @@ public class Enemy_AI : MonoBehaviour {
     private bool _dead;
     private bool _inRadius;
     private int _k = 0;
-    private int _l = 0;
     private bool _found;
     private bool _atStart;
     private Vector3 _startPosition;
     private Quaternion _startRotation;
+    private float _timeStampShoot;
 
     // Use this for initialization
     void Start () {
@@ -77,13 +78,10 @@ public class Enemy_AI : MonoBehaviour {
             look_at_player.x = 0;
             look_at_player.y = 0;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, look_at_player, RotationSpeed*Time.deltaTime);
-            _l++;
-            if (_l == ShootSpeed)
+            if (_timeStampShoot <= Time.time)
             {
                 Shoot();
-                _l = 0;
             }
-
         }
         if (_found == true && _inRadius == false)
         {
@@ -138,6 +136,7 @@ public class Enemy_AI : MonoBehaviour {
         GameObject enemyBullet;
         enemyBullet = Instantiate(Missile, transform.localPosition, transform.localRotation);
         enemyBullet.tag = "BulletEnemy";
+        _timeStampShoot = Time.time + ShootCooldown;
     }
 
     public void IsHit()

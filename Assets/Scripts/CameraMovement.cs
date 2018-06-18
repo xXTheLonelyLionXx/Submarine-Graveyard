@@ -16,12 +16,12 @@ public class CameraMovement : MonoBehaviour {
 
     void Update()
     {
+
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-
         if (Player == null)
         {
         }
