@@ -55,7 +55,8 @@ public class MenuPause : MonoBehaviour {
 
     public void OpenOptions()
     {
-        SceneManager.LoadScene("Options");
+        Debug.Log("OpenIngameOptions");
+        //SceneManager.LoadScene("Options");
     }
 
     public void LoadMenu()
