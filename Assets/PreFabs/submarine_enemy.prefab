@@ -128,14 +128,14 @@ MonoBehaviour:
   Speed: 0
   DeathSize: 0
   DeathSpeed: 0
-  Explosion: {fileID: 21300000, guid: 4002a08fdd8edb442938427601fefe3a, type: 3}
-  Player: {fileID: 0}
+  Player: {fileID: 1340374011029060, guid: 9678bc6472b09ca4ca5efc10cc6855f7, type: 2}
   Sight: {fileID: 1732348994763870}
-  Target: {fileID: 0}
-  Missile: {fileID: 0}
-  ShootSpeed: 0
+  Target: {fileID: 4933382012923458, guid: 9678bc6472b09ca4ca5efc10cc6855f7, type: 2}
+  Missile: {fileID: 1748819958511888, guid: 7614109eafaf90444b2be2f96b50bf1d, type: 2}
+  ShootCooldown: 4
   RotationSpeed: 0
-  Ammo: {fileID: 0}
+  Ammo: {fileID: 1364616089535522, guid: 0acb94bed4f445f4097bd8f7746730e4, type: 2}
+  Explosion: {fileID: 1691642251147018, guid: e780e0c2ae7aa02468cc069e6f87d906, type: 2}
 --- !u!114 &114927282892013130
 MonoBehaviour:
   m_ObjectHideFlags: 1

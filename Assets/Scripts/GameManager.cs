@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(13, 13);
         Physics2D.IgnoreLayerCollision(12, 13);
         Physics2D.IgnoreLayerCollision(13, 14);
+
         _enemiesStart = GameObject.FindGameObjectsWithTag("Enemy").Length;
         _time = 180 - Mathf.Round(Time.time);
         _messageInOrOut = true;
@@ -42,6 +44,11 @@ public class GameManager : MonoBehaviour {
         SetEnemyText();
         _time = 180 - Mathf.Round(Time.time);
         SetTimeText();
+
+        if(_time <= 0)
+        {
+            SceneManager.LoadScene("Leaderboard");
+        }
 
     }    //UI_Texts
     private void SetEnemyText()

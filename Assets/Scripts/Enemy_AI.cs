@@ -9,7 +9,7 @@ public class Enemy_AI : MonoBehaviour {
     public float Speed;
     public float DeathSize;
     public float DeathSpeed;
-    public Sprite Explosion;
+    //public Sprite Explosion;
     public GameObject Player;
     public GameObject Sight;
     public Transform Target;
@@ -18,6 +18,7 @@ public class Enemy_AI : MonoBehaviour {
     public float ShootCooldown = 4f;
     public int RotationSpeed;
     public GameObject Ammo;
+    public GameObject Explosion;
 
     private SpriteRenderer _SR;
     private CapsuleCollider2D _coll;
@@ -107,22 +108,23 @@ public class Enemy_AI : MonoBehaviour {
         }
         if (_life == 0)
         {
-            _coll.size = new Vector2(4, 4);
-            transform.gameObject.tag = "Explosion";
-            _SR.sprite = Explosion;
-            GetComponent<Collider2D>().isTrigger = true;
+            //_coll.size = new Vector2(4, 4);
+            //transform.gameObject.tag = "Explosion";
+            //_SR.sprite = Explosion;
+            //GetComponent<Collider2D>().isTrigger = true;
+            Instantiate(Explosion, transform.position, Quaternion.identity);
+            Instantiate(Ammo, transform.localPosition, Quaternion.identity);
+            Destroy(gameObject);
             _dead = true;
         }
-        if (_dead == true)
-        {
-            transform.localScale+= new Vector3(1/DeathSize,1/DeathSize,0);
-            _k++;
-            if(_k == DeathSpeed)
-            {
-                Instantiate(Ammo, transform.localPosition, Quaternion.identity);
-                Destroy(gameObject);
-            }
-        }
+        //if (_dead == true)
+        //{
+        //    //transform.localScale+= new Vector3(1/DeathSize,1/DeathSize,0);
+        //    _k++;
+        //    if(_k == DeathSpeed)
+        //    {
+        //    }
+        //}
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
