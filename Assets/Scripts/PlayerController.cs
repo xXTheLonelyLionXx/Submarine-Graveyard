@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0") && _ammo > 0)
+        if((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0")) && _ammo > 0)
         {
             Shoot();
         }
