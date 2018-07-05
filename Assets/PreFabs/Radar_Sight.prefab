@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4241439904688262}
   - component: {fileID: 58519998000983218}
-  - component: {fileID: 114140476044389244}
+  - component: {fileID: 114461869955908238}
   m_Layer: 13
   m_Name: Radar_Sight
   m_TagString: Untagged
@@ -56,7 +56,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 32.2
---- !u!114 &114140476044389244
+--- !u!114 &114461869955908238
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -64,12 +64,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1224370969889892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1b8992b85a85641b6f0081f59cf38b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c1831bd7416e9f46889389d50afb057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Red_Radar: {fileID: 1572594413968212, guid: a687b8febc5213e49b20eddf1893bb79, type: 2}
   IndicatorEnemy: {fileID: 1368822487873436, guid: 3f2ee5bfe6bfbd14aa6c14b2427a8399,
     type: 2}
   MinimapPosition: {fileID: 0}
-  EnemiesInSight: []
-  EnemiesOnRadar: []

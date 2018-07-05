@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Radar : MonoBehaviour {
-    public GameObject Red_Radar;
+public class Radar : MonoBehaviour
+{
     public GameObject IndicatorEnemy;
     public Transform MinimapPosition;
 

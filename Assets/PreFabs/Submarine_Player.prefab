@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4435406709481140}
   - component: {fileID: 58444246620192664}
   - component: {fileID: 50234199783284578}
-  - component: {fileID: 114941280872832710}
+  - component: {fileID: 114638037859259532}
   m_Layer: 13
   m_Name: Radar_Sight
   m_TagString: Untagged
@@ -277,6 +277,20 @@ PolygonCollider2D:
       - {x: 0.22, y: -1.23}
       - {x: 0.24, y: -1.13}
       - {x: 0.26, y: -1.11}
+--- !u!114 &114638037859259532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758849545573480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1831bd7416e9f46889389d50afb057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IndicatorEnemy: {fileID: 1368822487873436, guid: 3f2ee5bfe6bfbd14aa6c14b2427a8399,
+    type: 2}
+  MinimapPosition: {fileID: 0}
 --- !u!114 &114650579697132804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,18 +313,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &114941280872832710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1758849545573480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e480b084f7a4e994cb3d0ef2b9c81fd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  in_radius: 0
 --- !u!212 &212043662444182130
 SpriteRenderer:
   m_ObjectHideFlags: 1

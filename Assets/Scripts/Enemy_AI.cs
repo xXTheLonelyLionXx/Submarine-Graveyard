@@ -20,15 +20,15 @@ public class Enemy_AI : MonoBehaviour {
     public GameObject Ammo;
     public GameObject Explosion;
 
-    private SpriteRenderer _SR;
-    private CapsuleCollider2D _coll;
+    //private SpriteRenderer _SR;
+    //private CapsuleCollider2D _coll;
     private bool _upOrDown;
     private int _n;
     private int _b;
     private int _life;
     private bool _dead;
     private bool _inRadius;
-    private int _k = 0;
+    //private int _k = 0;
     private bool _found;
     private bool _atStart;
     private Vector3 _startPosition;
@@ -41,8 +41,8 @@ public class Enemy_AI : MonoBehaviour {
         _upOrDown = true;
         _atStart = false;
         _life = 3;
-        _SR = gameObject.GetComponent<SpriteRenderer>();
-        _coll = gameObject.GetComponent<CapsuleCollider2D>();
+        //_SR = gameObject.GetComponent<SpriteRenderer>();
+        //_coll = gameObject.GetComponent<CapsuleCollider2D>();
         _startPosition = transform.position;
         _startRotation = transform.rotation;
     }
@@ -108,23 +108,10 @@ public class Enemy_AI : MonoBehaviour {
         }
         if (_life == 0)
         {
-            //_coll.size = new Vector2(4, 4);
-            //transform.gameObject.tag = "Explosion";
-            //_SR.sprite = Explosion;
-            //GetComponent<Collider2D>().isTrigger = true;
             Instantiate(Explosion, transform.position, Quaternion.identity);
             Instantiate(Ammo, transform.localPosition, Quaternion.identity);
             Destroy(gameObject);
-            _dead = true;
         }
-        //if (_dead == true)
-        //{
-        //    //transform.localScale+= new Vector3(1/DeathSize,1/DeathSize,0);
-        //    _k++;
-        //    if(_k == DeathSpeed)
-        //    {
-        //    }
-        //}
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

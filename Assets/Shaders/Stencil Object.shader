@@ -7,6 +7,7 @@
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
+		ZWrite off
 		LOD 200
 
 		Stencil {

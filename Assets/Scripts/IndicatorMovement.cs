@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class IndicatorMovement : MonoBehaviour {
 
+    [HideInInspector]
     public GameObject PlayerPosition;
+    [HideInInspector]
     public GameObject AssignedEnemy;
 
     // Use this for initialization

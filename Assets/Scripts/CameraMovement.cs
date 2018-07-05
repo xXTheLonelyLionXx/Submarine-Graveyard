@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour {
         }
         else
         {
-            transform.position = Player.transform.position + _offset;
+            transform.position = Player.transform.position + _offset + Player.transform.up * 2;
         }
     }
 }
