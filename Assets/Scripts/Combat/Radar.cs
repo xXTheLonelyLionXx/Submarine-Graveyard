@@ -17,13 +17,20 @@ public class Radar : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-            GameObject AddRadarEnemy;
-            AddRadarEnemy = Instantiate(IndicatorEnemy, MinimapPosition.position + (other.transform.position - transform.position) / 18, Quaternion.identity);
-            AddRadarEnemy.transform.parent = MinimapPosition.transform;
-            AddRadarEnemy.transform.position = new Vector3(MinimapPosition.position.x, MinimapPosition.position.y, -10);
-            AddRadarEnemy.GetComponent<IndicatorMovement>().AssignedEnemy = other.gameObject;
-            AddRadarEnemy.GetComponent<IndicatorMovement>().PlayerPosition = gameObject;
-            EnemiesInSight.Add(other.gameObject, AddRadarEnemy);
+            if(EnemiesInSight.ContainsKey(other.gameObject))
+            {
+
+            }
+            else
+            {
+                GameObject AddRadarEnemy;
+                AddRadarEnemy = Instantiate(IndicatorEnemy, MinimapPosition.position + (other.transform.position - transform.position) / 18, Quaternion.identity);
+                AddRadarEnemy.transform.parent = MinimapPosition.transform;
+                AddRadarEnemy.transform.position = new Vector3(MinimapPosition.position.x, MinimapPosition.position.y, -10);
+                AddRadarEnemy.GetComponent<IndicatorMovement>().AssignedEnemy = other.gameObject;
+                AddRadarEnemy.GetComponent<IndicatorMovement>().PlayerPosition = gameObject;
+                EnemiesInSight.Add(other.gameObject, AddRadarEnemy);
+            }
         }
     }
 

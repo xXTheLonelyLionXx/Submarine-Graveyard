@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class WallCollision : MonoBehaviour {
 
+    public float SpeedThreshold;
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.layer == 9)
+        if (other.gameObject.layer == 9 && other.gameObject.GetComponent<PlayerController>().GetSpeed() >= SpeedThreshold)
         {
-
+            other.gameObject.GetComponent<PlayerController>().IsHit();
         }
     }
 }

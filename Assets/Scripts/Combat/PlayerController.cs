@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : Entity {
 
     public static event Action<float> OnDamageTaken;
+    public static event Action<float> OnMaterialGathered;
+    public static event Action<float> OnCrafting;
+    
 
     public float VerticalSpeed = 10;
-    public float HorizontalSpeed = 15; 
+    public float HorizontalSpeed = 15;
     public GameObject Missles;
     public Transform SubmarinePosition;
     public bool IsController;
@@ -18,17 +21,30 @@ public class PlayerController : MonoBehaviour {
     private GameObject[] _missileCount;
 
     [HideInInspector]
-    public int _maxHp = 6;
+    public int MaxHp = 6;
     private int _hp;
     [HideInInspector]
-    public  int _maxAmmo = 5;
+    public  int MaxAmmo = 5;
     private int _ammo;
     private float _timeStampShoot;
 
+    private int _materials;
+
+    private float _speed;
+
+    public AudioClip SfxShoot;
+    public AudioClip SfxHit;
+    public AudioClip SfxDestroyed;
+    public AudioClip SfxCrafting;
+
+    private AudioSource _sfxSource;
+
+
     // Use this for initialization
     void Start () {
-        _hp = _maxHp;
-        _ammo = _maxAmmo;
+        _sfxSource = GetComponent<AudioSource>();
+        _hp = MaxHp;
+        _ammo = MaxAmmo;
         _missileCount = new GameObject[5];
         _missileCount[0] = GameObject.Find("Missile0");
         _missileCount[1] = GameObject.Find("Missile1");
@@ -36,20 +52,26 @@ public class PlayerController : MonoBehaviour {
         _missileCount[3] = GameObject.Find("Missile3");
         _missileCount[4] = GameObject.Find("Missile4");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(_ammo > 5)
+
+    // Update is called once per frame
+    void Update () {
+
+        if(_ammo == 5)
         {
-            _ammo = 5;
         }
+        else if (_materials >= 3)
+        {
+            BuildAmmo();
+        }
+
 
         for(int i = 0; i < _missileCount.Length; i++)
         {
             _missileCount[i].SetActive(i <= _ammo - 1);
         }
 
-        //UI_Texts Update
+        _speed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
+
 
         //Controls
         if (IsController)
@@ -93,6 +115,7 @@ public class PlayerController : MonoBehaviour {
             Time.timeScale = 0f;
             GameObject.Find("Menu").GetComponent<MenuPause>().YouDied();
             //GameObject.Find("Main Camera").GetComponent<CameraMovement>().CenterPlayer();
+            //_sfxSource.PlayOneShot(SfxDestroyed, _sfxSource.volume); //does not play because gameObject gets destroyed
         }
     }
 
@@ -104,10 +127,6 @@ public class PlayerController : MonoBehaviour {
         //    IsHit();
         //}
         //Ammo gained
-        if(other.gameObject.layer == 14)
-        {
-            _ammo += 3;
-        }
     }
 
     //Create Missle once shot
@@ -118,18 +137,41 @@ public class PlayerController : MonoBehaviour {
         playerBullet = Instantiate(Missles, SubmarinePosition.position, SubmarinePosition.rotation);
         playerBullet.tag = "BulletPlayer";
         _timeStampShoot = Time.time + ShootCooldown;
+        _sfxSource.PlayOneShot(SfxShoot, _sfxSource.volume);
     }
 
     public void IsHit()
     {
         _hp--;
         if(OnDamageTaken != null)
-            OnDamageTaken.Invoke(_hp / (float)_maxHp);
+            OnDamageTaken.Invoke(_hp / (float)MaxHp);
+        InvokeDamageEffect();
+        InvokeSpriteChanger(_hp / (float)MaxHp);
+        _sfxSource.PlayOneShot(SfxHit, _sfxSource.volume);
+    }
+
+    private void BuildAmmo()
+    {
+        _materials -= 3;
+        _sfxSource.PlayOneShot(SfxCrafting, _sfxSource.volume);
+        _ammo++;
+        if (OnCrafting != null)
+            OnCrafting.Invoke(_materials / 4f);
     }
 
     public int GetHp()
     {
         return _hp;
+    }
+
+    public int GetAmmo()
+    {
+        return _ammo;
+    }
+
+    public float GetSpeed()
+    {
+        return _speed;
     }
 
     public void SetHp(int nHp)
@@ -140,5 +182,12 @@ public class PlayerController : MonoBehaviour {
     public void SetAmmo(int nAmmo)
     {
         _ammo = nAmmo;
+    }
+
+    public void AddMaterials()
+    {
+        _materials++;
+        if (OnMaterialGathered != null)
+            OnMaterialGathered.Invoke(_materials/4f);
     }
 }

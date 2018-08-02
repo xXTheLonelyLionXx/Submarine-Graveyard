@@ -63,4 +63,5 @@ public class Options : MonoBehaviour {
 			MasterMixer.SetFloat ("SFX_Vol", SFX_Bar.value - 80);
 		}
 	}
+
 }

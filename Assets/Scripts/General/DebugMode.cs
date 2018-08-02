@@ -47,11 +47,11 @@ public class DebugMode : MonoBehaviour {
         }
         if (ammo)
         {
-            player.GetComponent<PlayerController>().SetAmmo(player.GetComponent<PlayerController>()._maxAmmo);
+            player.GetComponent<PlayerController>().SetAmmo(player.GetComponent<PlayerController>().MaxAmmo);
         }
         if (health)
         {
-            player.GetComponent<PlayerController>().SetHp(player.GetComponent<PlayerController>()._maxHp);
+            player.GetComponent<PlayerController>().SetHp(player.GetComponent<PlayerController>().MaxHp);
         }
     }
 

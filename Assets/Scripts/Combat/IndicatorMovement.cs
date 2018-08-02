@@ -17,8 +17,14 @@ public class IndicatorMovement : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        Vector3 indicatorPosition = transform.parent.position + (AssignedEnemy.transform.position - PlayerPosition.transform.position) / 18;
-        indicatorPosition.z = -5;
-        transform.position = indicatorPosition;
+        if (gameObject == null)
+        {
+        }
+        else
+        {
+            Vector3 indicatorPosition = transform.parent.position + (AssignedEnemy.transform.position - PlayerPosition.transform.position) / 18;
+            indicatorPosition.z = -5;
+            transform.position = indicatorPosition;
+        }
     }
 }

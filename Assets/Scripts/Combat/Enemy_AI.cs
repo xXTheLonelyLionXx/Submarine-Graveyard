@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_AI : MonoBehaviour {
+public class Enemy_AI : Entity {
     public float UpAndDown;
     public float Left;
     public float Right;
@@ -15,13 +15,21 @@ public class Enemy_AI : MonoBehaviour {
     public GameObject Missile;
     public float ShootCooldown = 2.5f;
     public int RotationSpeed;
-    public GameObject Ammo;
+    public GameObject ScrapMetal;
+    public GameObject ScrapMetal2;
     public GameObject Explosion;
+
+    public AudioClip SfxShoot;
+    public AudioClip SfxHit;
+    public AudioClip SfxDestroyed;
+    private AudioSource _sfxSource;
+    
     
     private bool _upOrDown;
     private int _n;
     private int _b;
-    private int _life;
+    private int _hp;
+    private int _maxHp = 3;
     private bool _inRadius;
     private bool _found;
     private bool _atStart;
@@ -31,10 +39,12 @@ public class Enemy_AI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        _sfxSource = GetComponent<AudioSource>();
+
         _inRadius = false;
         _upOrDown = true;
         _atStart = false;
-        _life = 3;
+        _hp = _maxHp;
         _startPosition = transform.position;
         _startRotation = transform.rotation;
     }
@@ -98,10 +108,27 @@ public class Enemy_AI : MonoBehaviour {
                 }
             }
         }
-        if (_life == 0)
+        if (_hp <= 0)
         {
             Instantiate(Explosion, transform.position, Quaternion.identity);
-            Instantiate(Ammo, transform.localPosition, Quaternion.identity);
+            for (int i = 0; i != 9; i++)
+            {
+                float x = Random.Range(-0.5f, 0.5f);
+                float y = Random.Range(-0.5f, 0.5f);
+                int randomSprite = Random.Range(1, 3);
+                switch (randomSprite)
+                {
+                    case 1:
+                        Instantiate(ScrapMetal, new Vector3(transform.localPosition.x + x, transform.localPosition.y + y, 0), Quaternion.identity);
+                        break;
+                    case 2:
+                        Instantiate(ScrapMetal2, new Vector3(transform.localPosition.x + x, transform.localPosition.y + y, 0), Quaternion.identity);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //_sfxSource.PlayOneShot(SfxDestroyed, _sfxSource.volume); //Sound does not play because gameObject gets destroyed
             Destroy(gameObject);
         }
     }
@@ -118,10 +145,17 @@ public class Enemy_AI : MonoBehaviour {
         enemyBullet = Instantiate(Missile, transform.localPosition, transform.localRotation);
         enemyBullet.tag = "BulletEnemy";
         _timeStampShoot = Time.time + ShootCooldown;
+        _sfxSource.PlayOneShot(SfxShoot, _sfxSource.volume);
     }
 
     public void IsHit()
     {
-        _life--;
+        _hp--;
+        InvokeDamageEffect();
+        InvokeSpriteChanger(_hp / (float)_maxHp);
+        if (_hp > 0)
+        {
+            _sfxSource.PlayOneShot(SfxHit, _sfxSource.volume);
+        }
     }
 }

@@ -7,21 +7,6 @@ public class SpriteChanger : MonoBehaviour {
     public SpriteValue[] Sprites;
     public SpriteRenderer ChangeRenderer;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
-    void OnEnable()
-    {
-        PlayerController.OnDamageTaken += UpdateSprites;
-    }
-	
-    void OnDisable()
-    {
-        PlayerController.OnDamageTaken -= UpdateSprites;
-    }
-
     public void UpdateSprites(float amount)
     {
         if(Sprites.Length <= 0)

@@ -6,13 +6,13 @@ public class Explosion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject, 0.4f);
 	}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.layer == 9 || other.gameObject.layer == 10)
+        if (other.gameObject.layer == 9 || other.gameObject.layer == 10|| other.gameObject.layer == 14)
         {
             if(other.gameObject.layer == 9)
                 other.gameObject.GetComponent<PlayerController>().IsHit();
